@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true,
+    "amd": true
+  },
+  "rules": {
+    "no-console": "off"
+  },
+  "plugins": [
+    "json"
+  ]
+}
