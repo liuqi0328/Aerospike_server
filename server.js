@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const moment = require('moment-timezone');
+const uniqid = require('uniqid');
 const Aerospike = require('aerospike');
 
 const PORT = process.env.PORT || 8000;
@@ -63,11 +64,13 @@ app.route('/')
     })
     .post((req, res) => {
         // let id = req.params.id;
-        let key = new Aerospike.Key('voice', 'action', 'abc222');
+        console.log(req.body);
+        let ID = uniqid();
+        let key = new Aerospike.Key('voice', 'action', ID);
         console.log(key);
         let bins = {
-            id: 'test222',
-            data: 'test111222',
+            id: ID,
+            data: req.body,
         };
         asClient.put(key, bins, meta, policy)
             .then(() => {
@@ -80,7 +83,5 @@ app.route('/')
             });
     });
 
-
 app.listen(PORT);
 console.log(`Server started on: ${PORT}`);
-
